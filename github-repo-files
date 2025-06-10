@@ -1,0 +1,5 @@
+<script>start("/Users/dd60/faafo/faafo/github-repo-files/");</script>
+<script>onHasParentDirectory();</script>
+<script>addRow("docs","docs",1,96,"96 B",1749592928,"11/06/2025, 00:02:08");</script>
+<script>addRow("scripts","scripts",1,96,"96 B",1749592890,"11/06/2025, 00:01:30");</script>
+<script>addRow("README.md","README.md",0,7244,"7.1 kB",1749592846,"11/06/2025, 00:00:46");</script>
