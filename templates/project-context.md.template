@@ -1,0 +1,210 @@
+# 🎯 FAAFO Career Platform - Project Context & Intelligence
+
+## 📊 Project Intelligence Summary
+- **Type**: Next.js Web Application
+- **Framework**: Next.js 15.3.3 with App Router
+- **Language**: TypeScript
+- **Database**: Prisma + PostgreSQL/SQLite
+- **Authentication**: NextAuth.js
+- **Testing**: Jest + React Testing Library
+- **Styling**: Tailwind CSS + shadcn/ui
+- **Deployment**: Vercel
+- **Monitoring**: Sentry
+
+## 📁 File Organization Patterns (CANONICAL STRUCTURE)
+
+### **Source Code Structure**
+```
+faafo-career-platform/
+├── src/                           # CANONICAL: Main source code
+│   ├── app/                       # Next.js App Router pages & API
+│   ├── components/                # CANONICAL: React components
+│   ├── lib/                       # CANONICAL: Utilities & configurations
+│   ├── emails/                    # Email templates
+│   └── types/                     # TypeScript type definitions
+├── __tests__/                     # CANONICAL: All test files
+├── docs/                          # CANONICAL: Documentation (root level)
+├── public/                        # Static assets
+├── prisma/                        # Database schema & migrations
+└── scripts/                       # Utility scripts
+```
+
+### **DUPLICATE STRUCTURES IDENTIFIED (AVOID THESE)**
+❌ **Forbidden Locations:**
+- `faafo-career-platform/components` (use `src/components`)
+- `faafo-career-platform/lib` (use `src/lib`)
+- `faafo-career-platform/docs` (use root `docs/`)
+- Multiple test directories (use `__tests__/` only)
+
+## 📝 Naming Conventions
+
+### **Files & Directories**
+- **Components**: PascalCase (`LoginForm.tsx`, `PersonalizedResources.tsx`)
+- **Utilities**: camelCase (`auth.tsx`, `prisma.ts`, `validation.ts`)
+- **Pages**: kebab-case (`freedom-fund/`, `assessment/`)
+- **Tests**: `ComponentName.test.tsx` or `feature.test.ts`
+- **API Routes**: kebab-case (`/api/auth/`, `/api/freedom-fund/`)
+
+### **Code Conventions**
+- **Functions**: camelCase (`handleSubmit`, `validateInput`)
+- **Classes**: PascalCase (`ProjectIntelligence`, `SelfHealingComponent`)
+- **Constants**: UPPER_SNAKE_CASE (`API_BASE_URL`, `DEFAULT_TIMEOUT`)
+- **Types/Interfaces**: PascalCase (`UserProfile`, `AssessmentResult`)
+
+## 🧰 Existing Core Utilities (DO NOT DUPLICATE)
+
+### **Authentication & Security**
+- `src/lib/auth.tsx` - NextAuth configuration
+- `src/lib/csrf.ts` - CSRF protection
+- `src/lib/rate-limit.ts` - Rate limiting
+- `middleware.ts` - Route protection
+
+### **Database & Data**
+- `src/lib/prisma.ts` - Database client
+- `src/lib/validation.ts` - Input validation
+- `src/lib/api-response.ts` - API response utilities
+
+### **Email & Communication**
+- `src/lib/email.ts` - Email sending utilities
+- `src/lib/email-verification.ts` - Email verification logic
+- `src/emails/` - Email templates (React Email)
+
+### **Assessment System**
+- `src/lib/assessmentDefinition.ts` - Assessment structure
+- `src/lib/assessmentScoring.ts` - Scoring algorithms
+- `src/lib/suggestionService.ts` - Recommendation engine
+
+### **Monitoring & Analytics**
+- `src/lib/monitoring.ts` - Application monitoring
+- `src/lib/analytics.ts` - User analytics
+- `src/lib/errorReporting.ts` - Error tracking
+
+## 🧪 Testing Framework & Patterns
+
+### **Testing Structure**
+- **Framework**: Jest + React Testing Library
+- **Location**: `__tests__/` directory (CANONICAL)
+- **Pattern**: Mirror source structure in tests
+- **Naming**: `ComponentName.test.tsx` or `feature.test.ts`
+
+### **Test Categories**
+```
+__tests__/
+├── components/           # Component unit tests
+├── integration/          # Integration tests
+├── unit/                # Unit tests for utilities
+├── e2e/                 # End-to-end tests (Playwright)
+└── api/                 # API endpoint tests
+```
+
+### **Test Patterns**
+- **Setup**: `beforeEach()` with cleanup
+- **Structure**: `describe()` blocks for grouping
+- **Assertions**: React Testing Library queries
+- **Mocking**: Comprehensive mocks in `__mocks__/`
+
+## 🏗️ Architecture Patterns
+
+### **Component Architecture**
+- **UI Components**: `src/components/ui/` (shadcn/ui based)
+- **Feature Components**: `src/components/[feature]/`
+- **Layout Components**: `src/components/layout/`
+- **Form Components**: React Hook Form + Zod validation
+
+### **State Management**
+- **Client State**: React hooks + Context API
+- **Server State**: React Query (TanStack Query)
+- **Form State**: React Hook Form
+- **Global State**: Context providers
+
+### **API Architecture**
+- **Pattern**: Next.js API Routes in `src/app/api/`
+- **Structure**: RESTful endpoints with proper HTTP methods
+- **Validation**: Zod schemas for input validation
+- **Error Handling**: Standardized error responses
+- **Authentication**: Middleware-based protection
+
+## 🔧 Import Patterns
+
+### **Path Mappings (tsconfig.json)**
+```typescript
+"@/components/*": ["./src/components/*"]
+"@/lib/*": ["./src/lib/*"]
+"@/app/*": ["./src/app/*"]
+"@/types/*": ["./src/types/*"]
+"@/emails/*": ["./src/emails/*"]
+```
+
+### **Common Import Patterns**
+```typescript
+// Components
+import { Button } from '@/components/ui/button'
+import LoginForm from '@/components/LoginForm'
+
+// Utilities
+import { prisma } from '@/lib/prisma'
+import { validateInput } from '@/lib/validation'
+
+// Types
+import type { UserProfile } from '@/types/user'
+```
+
+## 🚨 Critical Architectural Decisions
+
+### **Database Strategy**
+- **ORM**: Prisma with PostgreSQL (production) / SQLite (development)
+- **Migrations**: Prisma migrate
+- **Seeding**: Custom seed scripts in `prisma/`
+
+### **Authentication Flow**
+- **Provider**: NextAuth.js with credentials + OAuth
+- **Session**: JWT tokens with database sessions
+- **Protection**: Middleware-based route protection
+
+### **Email System**
+- **Service**: Resend for production
+- **Templates**: React Email components
+- **Verification**: Custom email verification flow
+
+### **Error Handling**
+- **Client**: Error boundaries + toast notifications
+- **Server**: Standardized API error responses
+- **Monitoring**: Sentry integration for error tracking
+
+## 🎯 Development Workflow
+
+### **TDD Protocol (MANDATORY)**
+1. **Write failing test first**
+2. **Implement minimal code to pass**
+3. **Refactor with error handling**
+4. **Add self-healing mechanisms**
+5. **Validate integration**
+
+### **File Creation Checklist**
+- [ ] Search for existing similar functionality
+- [ ] Verify naming follows project conventions
+- [ ] Place in canonical directory structure
+- [ ] Write tests first (TDD)
+- [ ] Add error handling and validation
+- [ ] Update this context document if new patterns emerge
+
+## 🔄 Continuous Intelligence
+
+### **Project Health Indicators**
+- ✅ Zero duplicate directory structures
+- ✅ Consistent naming conventions
+- ✅ Comprehensive test coverage
+- ✅ Proper error handling
+- ✅ Clear architectural patterns
+
+### **Maintenance Tasks**
+- Regular duplicate structure audits
+- Convention compliance checks
+- Test coverage monitoring
+- Performance optimization
+- Security vulnerability scanning
+
+---
+
+**Last Updated**: Auto-generated by Ultimate Project Discovery
+**Next Review**: Update when adding new architectural patterns

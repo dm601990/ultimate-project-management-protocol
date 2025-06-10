@@ -1,0 +1,144 @@
+# Universal Project Navigation Configuration
+# This file configures the navigation framework for this specific project
+
+project:
+  name: "FAAFO Career Platform"
+  type: "nextjs"
+  language: "typescript"
+  framework: "nextjs"
+  description: "Career assessment and guidance platform"
+
+# CANONICAL DIRECTORY STRUCTURE (SINGLE SOURCE OF TRUTH)
+source_structure:
+  main_dir: "faafo-career-platform/src"
+  components_dir: "src/components"          # CANONICAL: Use src/components, NOT root components
+  pages_dir: "src/app"
+  api_dir: "src/app/api"
+  utils_dir: "src/lib"
+  tests_dir: "__tests__"
+  styles_dir: "styles"
+  assets_dir: "public"
+  emails_dir: "src/emails"
+  types_dir: "src/types"
+  docs_dir: "docs"                          # CANONICAL: Use root docs/, NOT nested docs
+
+# DUPLICATE PREVENTION RULES
+duplicate_prevention:
+  forbidden_locations:
+    - "faafo-career-platform/components"    # Use src/components instead
+    - "faafo-career-platform/docs"          # Use root docs/ instead
+    - "faafo-career-platform/lib"           # Use src/lib instead
+    - "src/docs"                            # Use root docs/ instead
+
+  canonical_mappings:
+    components: "faafo-career-platform/src/components"
+    documentation: "docs"
+    utilities: "faafo-career-platform/src/lib"
+    tests: "faafo-career-platform/__tests__"
+    emails: "faafo-career-platform/src/emails"
+    types: "faafo-career-platform/src/types"
+
+# Documentation categories (in order of importance)
+docs_categories:
+  - project-management    # Planning, requirements, architecture
+  - development          # Implementation guides, decisions
+  - testing             # Test strategies, reports, guides
+  - user-guides         # End-user and API documentation
+  - operations          # Deployment, maintenance, monitoring
+
+# File patterns for smart search
+file_patterns:
+  test_files: ["*.test.*", "*.spec.*"]
+  config_files: ["*.config.*", "*.json", "*.yml", "*.yaml", "*.toml"]
+  docs_files: ["*.md", "*.rst", "*.txt"]
+  component_files: ["*.tsx", "*.jsx", "*.vue"]
+  style_files: ["*.css", "*.scss", "*.sass", "*.less"]
+  api_files: ["route.ts", "api.ts", "*.api.*"]
+
+# Navigation priorities (what to search first)
+search_priorities:
+  entry_points:
+    - "README.md"
+    - "DOCUMENTATION_INDEX.md"
+    - "PROJECT_MAP.md"
+    - "faafo-career-platform/README.md"
+  
+  documentation_order:
+    - "project-management"
+    - "user-guides"
+    - "development"
+    - "testing"
+    - "operations"
+  
+  source_code_order:
+    - "app"           # Next.js pages/routes
+    - "components"    # React components
+    - "lib"          # Utilities
+    - "emails"       # Email templates
+    - "types"        # TypeScript definitions
+
+# Project-specific search mappings
+search_mappings:
+  # Common search terms and where to look
+  api:
+    - "docs/user-guides/API.md"
+    - "faafo-career-platform/src/app/api/"
+    - "faafo-career-platform/__tests__/api/"
+  
+  assessment:
+    - "docs/project-management/ASSESSMENT_SYSTEM.md"
+    - "faafo-career-platform/src/app/assessment/"
+    - "faafo-career-platform/src/components/assessment/"
+  
+  database:
+    - "faafo-career-platform/prisma/"
+    - "docs/project-management/02_ARCHITECTURE.md"
+  
+  deployment:
+    - "docs/operations/deployment.md"
+    - "scripts/"
+  
+  testing:
+    - "docs/testing/TESTING_GUIDE.md"
+    - "faafo-career-platform/__tests__/"
+  
+  auth:
+    - "faafo-career-platform/src/lib/auth.ts"
+    - "faafo-career-platform/src/app/api/auth/"
+  
+  components:
+    - "faafo-career-platform/src/components/"
+  
+  dashboard:
+    - "faafo-career-platform/src/app/dashboard/"
+    - "faafo-career-platform/src/components/dashboard/"
+
+# Ignore patterns for searches
+ignore_patterns:
+  - "node_modules"
+  - ".git"
+  - "coverage"
+  - "dist"
+  - "build"
+  - ".next"
+  - "target"
+  - "__pycache__"
+  - "*.log"
+  - ".env*"
+
+# Quick access commands
+quick_commands:
+  start: "cd faafo-career-platform && npm run dev"
+  test: "cd faafo-career-platform && npm test"
+  build: "cd faafo-career-platform && npm run build"
+  lint: "cd faafo-career-platform && npm run lint"
+  db_migrate: "cd faafo-career-platform && npx prisma migrate dev"
+  db_studio: "cd faafo-career-platform && npx prisma studio"
+
+# Navigation help text
+help_text:
+  overview: "FAAFO is a career assessment platform with personalized guidance"
+  getting_started: "Start with README.md, then check faafo-career-platform/README.md for setup"
+  finding_files: "Use ./scripts/universal-find-file.sh [search_term] for smart search"
+  documentation: "All docs are in docs/ directory, organized by category"
+  source_code: "Main app is in faafo-career-platform/src/ with Next.js App Router structure"
